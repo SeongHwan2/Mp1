@@ -1,10 +1,12 @@
 package kr.sw.web;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.sw.web.beans.loginBean;
 import kr.sw.web.dao.Dao;
+import net.sf.json.JSONObject;
 
 /**
  * Handles requests for the application home page.
@@ -73,6 +76,22 @@ public class HomeController {
 				return "login";
 			}
 		
+	}
+	
+	@RequestMapping("/idCheck")
+	public void idCheck(loginBean loBean, HttpServletRequest req, HttpServletResponse res) {
+		boolean check = d.checkId(loBean);
+		JSONObject jobj = new JSONObject();
+		jobj.put("check", check);
+		
+		try {
+			res.setCharacterEncoding("UTF-8");
+			res.setContentType("application/json; charset=UTF-8");
+			res.getWriter().write(jobj.toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }

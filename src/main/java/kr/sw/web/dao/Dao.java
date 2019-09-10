@@ -16,4 +16,13 @@ public class Dao {
 		System.out.println(session.insert("sql.join", loBean));
 	}
 	
+	public boolean checkId(loginBean loBean) {
+		Boolean check = session.selectOne("sql.idC", loBean);
+		System.out.println(check);
+		if(check != null) {
+			return check;
+		}
+		return false;
+		
+	}
 }

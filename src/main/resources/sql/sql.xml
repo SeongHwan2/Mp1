@@ -7,6 +7,10 @@
     select 1 from cnt
   </select>
   
+  <select id="idC" parameterType="kr.sw.web.beans.loginBean" resultType="_boolean">
+  	SELECT `id` FROM `user` WHERE `id` = #{id};
+  </select>
+  
   <insert id="join" parameterType="kr.sw.web.beans.loginBean">
   	insert into `user` (`id`, `password`, `nickname`, `delYn`) values(#{id}, #{password}, #{nickname}, 'N')
   </insert>

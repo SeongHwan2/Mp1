@@ -16,7 +16,7 @@
 	}
 	
 	section {
-		text-align: center;
+		
 	}
 	
 	section form {
@@ -26,7 +26,7 @@
 	
 	section form button{
 		display: inline-block;
-		float: right;
+		width: 100%;
 	}
 	
 	.tb{
@@ -44,13 +44,26 @@
 		width: 60%;
 	}
 	
-	.buttonC {
-		display: inline-block;
-		float: right;
-		margin-right: 100px;
-	}
-	
 	.dn {
 		display: none;
+	}
+	
+	p {
+		line-height: 44px;
+		vertical-align: middle;
+	}
+	
+	#check {
+		display: inline-block;
+		float: none!important;
+		width:inherit;
+	}
+	
+	.id_error{
+		border-color: red;
+	}
+	
+	.id_success{
+		border-color: green;
 	}
 </style>

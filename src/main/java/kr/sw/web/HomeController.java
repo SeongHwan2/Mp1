@@ -52,12 +52,14 @@ public class HomeController {
 	@RequestMapping(value="/join", method=RequestMethod.POST)
 	public String join(HttpServletRequest req, @Valid loginBean loBean, BindingResult result) {
 			System.out.println("Post");
+			String msg = "";
 			if(result.hasErrors()) {
 				System.out.println("result has error!");
 				List<ObjectError> errors = result.getAllErrors();
 				for(ObjectError error : errors) {
 					System.out.println("error : " +  error.getDefaultMessage());
-					req.setAttribute("msg", error.getDefaultMessage());
+					msg = error.getDefaultMessage();
+					req.setAttribute("msg", msg);
 //				 System.out.println(req.getAttribute("msg"));
 				}
 				return "join";

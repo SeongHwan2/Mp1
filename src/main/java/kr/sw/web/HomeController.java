@@ -1,15 +1,22 @@
 package kr.sw.web;
 
-import java.text.DateFormat;
-import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import kr.sw.web.beans.loginBean;
+import kr.sw.web.dao.Dao;
 
 /**
  * Handles requests for the application home page.
@@ -17,23 +24,53 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+	@Autowired
+	Dao d;
+	
+	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
-		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
-		
-		String formattedDate = dateFormat.format(date);
-		
-		model.addAttribute("serverTime", formattedDate );
 		
 		return "home";
+	}
+	
+	@RequestMapping(value="/login")
+	public String login(HttpServletRequest req) {
+		String userId = req.getParameter("userId");
+		String password = req.getParameter("password");
+		System.out.println(userId + " : " + password);
+		return "login";
+	}
+	
+	@RequestMapping(value="/join", method=RequestMethod.GET)
+	public String join() {
+		System.out.println("get");
+		return "join";
+	}
+	
+	@RequestMapping(value="/join", method=RequestMethod.POST)
+	public String join(HttpServletRequest req, @Valid loginBean loBean, BindingResult result) {
+			System.out.println("Post");
+			if(result.hasErrors()) {
+				System.out.println("result has error!");
+				List<ObjectError> errors = result.getAllErrors();
+				for(ObjectError error : errors) {
+					System.out.println("error : " +  error.getDefaultMessage());
+					req.setAttribute("msg", error.getDefaultMessage());
+//				 System.out.println(req.getAttribute("msg"));
+				}
+				return "join";
+			}else {
+				String id = loBean.getId();
+				String pw = loBean.getPassword();
+				String nick = loBean.getNickname();
+				System.out.println(loBean);
+				System.out.println(id + " : " + pw + " : " + nick);
+				d.join(loBean);
+				return "login";
+			}
+		
 	}
 	
 }

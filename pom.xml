@@ -158,7 +158,18 @@
 		    <groupId>commons-fileupload</groupId>
 		    <artifactId>commons-fileupload</artifactId>
 		    <version>1.4</version>
-		</dependency>                      
+		</dependency>
+		<!-- validation (bean 예외 처리) -->
+		<dependency>
+		    <groupId>javax.validation</groupId>
+		    <artifactId>validation-api</artifactId>
+		    <version>2.0.1.Final</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>6.0.17.Final</version>
+		</dependency>                
 	</dependencies>
     <build>
         <plugins>

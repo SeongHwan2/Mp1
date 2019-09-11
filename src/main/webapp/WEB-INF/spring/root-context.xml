@@ -13,9 +13,9 @@
 	<bean id="dataSource" 
 		  class="org.springframework.jdbc.datasource.DriverManagerDataSource" 
 		  p:driverClassName="org.mariadb.jdbc.Driver"
-		  p:url="jdbc:mysql://192.168.3.121/fileNotice"
-		  p:username="root"
-		  p:password="1234"/>
+		  p:url="jdbc:mysql://gdj16.gudi.kr/m12"
+		  p:username="m12"
+		  p:password="m12"/>
 		  
 	<bean id="sqlSessionFactory" 
 		  class="org.mybatis.spring.SqlSessionFactoryBean"

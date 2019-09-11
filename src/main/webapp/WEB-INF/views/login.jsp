@@ -26,13 +26,22 @@
 		display: inline-block;
 	}
 </style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+	$(document).ready(function(){
+		var msg = '<%=request.getAttribute("msg") %>';
+		if(msg != "null"){
+			alert(msg);
+		}
+	})
+</script>
 </head>
 <body>
 	<section>
-		<form action="/login" type="POST">
+		<form action="/login" method="POST">
 			<p>
 			<label>id</label>
-			<input type="text" name="userId"></p>
+			<input type="text" name="id"></p>
 			<p>
 			<label>password</label>
 			<input type="text" name="password">

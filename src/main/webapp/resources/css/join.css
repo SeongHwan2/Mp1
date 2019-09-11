@@ -24,8 +24,7 @@
 		margin: auto;
 	}
 	
-	section form button{
-		display: inline-block;
+	#submit {
 		width: 100%;
 	}
 	

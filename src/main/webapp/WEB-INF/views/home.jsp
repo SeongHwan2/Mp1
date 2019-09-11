@@ -10,12 +10,15 @@
 <link rel="stylesheet" href="/resources/css/home2.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
-	alert(request.getAttribute("msg"));
+	$(document).ready(function(){
+		$("#join").on("click", function(){
+			location.href="/join";
+		})
+	})
 </script>
 </head>
 <body>
-<%=request.getAttribute("msg") %>
-	<p id="info">사용자 : <%=session.getAttribute("nickName") %>님</p>
+	<p id="info">사용자 : <%=session.getAttribute("nick") %>님</p>
 	<button id="logout">로그아웃</button>
 	<button id="join">회원가입</button>
 	

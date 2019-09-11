@@ -6,12 +6,11 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-public class loginBean {
+public class joinBean {
 	@NotEmpty 
 	private String id;
 	@NotEmpty
-	private String password;
-	@NotEmpty 
+	private String password; 
 	private String nickname;
 	
 	public String getId() {

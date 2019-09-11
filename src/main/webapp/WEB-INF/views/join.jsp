@@ -9,32 +9,42 @@
 <script>
 $(document).ready(function(){
 	var msg = '<%=request.getAttribute("msg") %>';
+	var idCheck = false;
+	if(msg != "null"){
 		alert(msg);
+	}
+	
+	
 	
 	$("#check").on("click", function(){
-		if($("#idt").val() != ""){
-			$.ajax({
-				url: "/idCheck",
-				type: "POST",
-				data: {
-					"id" : $("#idt").val()
-				}
-			}).done(function(data){
-				var check = data.check;
-				console.log(check);
-				if(check == true){
-					$("#idt").addClass("id_success");
-				}else {
-					$("#idt").addClass("id_error");
-					$("#idt").val("중복된 아이디 입니다.");
-				}
-			})
-		}else {
-			alert("값을 입력하세요");
-		}
+			if($("#idt").val() != ""){
+				$.ajax({
+					url: "/idCheck",
+					type: "POST",
+					data: {
+						"id" : $("#idt").val()
+					}
+				}).done(function(data){
+					var check = data.check;
+					console.log(check);
+					if(check == true){
+						if($("#idt").hasClass("id_success")){
+							$("#idt").removeClass("id_success");
+						}
+						$("#idt").addClass("id_error");
+						$("#idt").val("중복된 아이디 입니다.");
+					}else {
+						if($("#idt").hasClass("id_error")){
+							$("#idt").removeClass("id_error");
+						}
+						$("#idt").addClass("id_success");
+					}
+				})
+				idCheck = true;
+			}else {
+				alert("값을 입력하세요");
+			}
 		
-		
-		//$("#idt").addClass("id_error");
 	})
 })
 </script>
@@ -44,7 +54,7 @@ $(document).ready(function(){
 		<h2>회원가입</h2>
 	</header>
 	<section>
-		<form id="" action="/join" method="POST">
+		<form id="" action="/join" method="POST" name="fr">
 			<p>
 			<label>userid</label>
 			<input type="text" id="idt" name="id" placeholder="아이디를 입력하세요" class="tb">
@@ -56,10 +66,10 @@ $(document).ready(function(){
 			</p>
 			<p>
 			<label>nickname</label>
-			<input type="text" id="nickname" name="nickname" class="tb" placeholder="닉네임을 입력하세요">
+			<input type="text" id="nickname" name="nickname" required="required" class="tb" placeholder="닉네임을 입력하세요">
 			</p>
 			<p>
-				<button type="submit">등록</button>
+			<input type="submit" value="등록" id="submit">
 			</p>
 			
 		</form>

@@ -7,11 +7,17 @@
     select 1 from cnt
   </select>
   
-  <select id="idC" parameterType="kr.sw.web.beans.loginBean" resultType="_boolean">
-  	SELECT `id` FROM `user` WHERE `id` = #{id};
+  <select id="idC" parameterType="kr.sw.web.beans.joinBean" resultType="hashmap">
+  	SELECT * FROM `user` WHERE `id` = #{id}
+  	<if test="password != null">
+  	and `password` = #{password}</if>
   </select>
   
-  <insert id="join" parameterType="kr.sw.web.beans.loginBean">
+  <select id="list">
+  	select * from `Notice`
+  </select>
+  
+  <insert id="join" parameterType="kr.sw.web.beans.joinBean">
   	insert into `user` (`id`, `password`, `nickname`, `delYn`) values(#{id}, #{password}, #{nickname}, 'N')
   </insert>
 </mapper>

@@ -33,6 +33,10 @@
 		if(msg != "null"){
 			alert(msg);
 		}
+		
+		$("#join").on("click", function(){
+			location.href="/join";
+		})
 	})
 </script>
 </head>
@@ -46,6 +50,7 @@
 			<label>password</label>
 			<input type="text" name="password">
 			<button type="submit">로그인</button></p>
+			<button type="button" id="join">회원가입</button>
 		</form>
 	</section>
 </body>

@@ -11,16 +11,13 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 	$(document).ready(function(){
-		$("#join").on("click", function(){
-			location.href="/join";
-		})
+		
 	})
 </script>
 </head>
 <body>
 	<p id="info">사용자 : <%=session.getAttribute("nick") %>님</p>
 	<button id="logout">로그아웃</button>
-	<button id="join">회원가입</button>
 	
 	<header>
 		<h1> 게시판 </h1>

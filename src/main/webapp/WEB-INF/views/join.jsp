@@ -44,7 +44,13 @@ $(document).ready(function(){
 			}else {
 				alert("값을 입력하세요");
 			}
-		
+	
+			$("#fr").submit(function( event ) {
+				event.preventDefault();
+				if(idCheck != true) {
+					alert("아이디 중복여부를 확인하세요");
+				}
+			});
 	})
 })
 </script>
@@ -54,15 +60,15 @@ $(document).ready(function(){
 		<h2>회원가입</h2>
 	</header>
 	<section>
-		<form id="" action="/join" method="POST" name="fr">
+		<form id="" action="/join" method="POST" name="fr" id="fr">
 			<p>
 			<label>userid</label>
-			<input type="text" id="idt" name="id" placeholder="아이디를 입력하세요" class="tb">
+			<input type="text" id="idt" name="id" required="required" placeholder="아이디를 입력하세요" class="tb">
 			<button type="button" id="check">확인</button>
 			</p>
 			<p>
 			<label>password</label>
-			<input name="password" class="tb" placeholder="비밀번호를 입력하세요">
+			<input name="password" class="tb" required="required" placeholder="비밀번호를 입력하세요">
 			</p>
 			<p>
 			<label>nickname</label>

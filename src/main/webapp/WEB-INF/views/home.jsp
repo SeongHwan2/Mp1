@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="true" %>
-<%@page import="java.util.HashMap"%>
+<%@ page import="kr.sw.web.beans.ListBean" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -10,9 +10,42 @@
 <link rel="stylesheet" href="/resources/css/home2.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
-	$(document).ready(function(){
-		
-	})
+$(document).ready(function(){
+	function select(){
+		$("tbody").empty();
+		$.ajax({
+			url: "/select",
+			type: "POST" //get, post
+		}).done(function(res){
+			console.log("성공");
+			console.log(res);
+			storage = res.list;
+			console.log(storage);
+			if(storage.length > 0) {
+	 			for(var i = 0; i < storage.length; i++){
+					var userId = (storage[i].userId != null)? storage[i].userId:"미상";
+					var tag = '<tr class="contents">' +
+					'<td>' + storage[i].no + '</td>' +
+					'<td>' + storage[i].title + '</td>' +
+					'<td>' + storage[i].nickName + '</td>' + 
+	  				'</tr>';
+					$("tbody").append(tag); 
+				}
+			}
+ 			$('.contents').click(function(){
+				var index = $(".contents").index(this);
+				console.log(index);
+				console.log(storage[index]);
+				location.href = "/create/?index=" + index;
+			});
+ 			
+		})
+	}
+	
+	
+	
+	select();
+})
 </script>
 </head>
 <body>
@@ -23,7 +56,7 @@
 		<h1> 게시판 </h1>
 	</header>
 	<section>
-		<form id="edit" action="">
+		<form id="edit" action="/create" method="POST">
 			<button type="submit">글작성</button>
 		</form>
 		<table>
@@ -32,7 +65,6 @@
 					<td>번호</td>
 					<td>제목</td>
 					<td>작성자</td>
-					<td>파일목록</td>
 				</tr>
 			</thead>
 			<tbody>

@@ -32,7 +32,7 @@ $(document).ready(function(){
 							$("#idt").removeClass("id_success");
 						}
 						$("#idt").addClass("id_error");
-						$("#idt").val("중복된 아이디 입니다.");
+//						$("#idt").val("중복된 아이디 입니다.");
 					}else {
 						if($("#idt").hasClass("id_error")){
 							$("#idt").removeClass("id_error");

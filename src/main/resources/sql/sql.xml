@@ -13,11 +13,15 @@
   	and `password` = #{password}</if>
   </select>
   
-  <select id="list">
+  <select id="list" resultType="kr.sw.web.beans.ListBean">
   	select * from `Notice`
   </select>
   
   <insert id="join" parameterType="kr.sw.web.beans.joinBean">
   	insert into `user` (`id`, `password`, `nickname`, `delYn`) values(#{id}, #{password}, #{nickname}, 'N')
+  </insert>
+  
+  <insert id="insert" parameterType="kr.sw.web.beans.ListBean">
+  	INSERT INTO Notice(`txt`, `title`<if test="fileName!=null and fileName!=''">,`fileName`,`fileUrl`</if>, `nickName`,`delYn`) VALUES (#{txt}, #{title}<if test="fileName!=null and fileName!=''">,#{fileName},#{fileUrl}</if>, #{nickName}, 'N');
   </insert>
 </mapper>

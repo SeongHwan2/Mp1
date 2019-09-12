@@ -6,8 +6,14 @@ public class ListBean {
 	private String fileName;
 	private String fileUrl;
 	private String nickName;
+	private int no;
 	
-	
+	public int getNo() {
+		return no;
+	}
+	public void setNo(int no) {
+		this.no = no;
+	}
 	public String getTitle() {
 		return title;
 	}

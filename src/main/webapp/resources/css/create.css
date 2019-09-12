@@ -16,7 +16,7 @@
 	}
 	
 	section {
-		
+		text-align: center;
 	}
 	
 	section form {
@@ -24,8 +24,9 @@
 		margin: auto;
 	}
 	
-	#submit {
-		width: 100%;
+	section form button{
+		display: inline-block;
+		float: right;
 	}
 	
 	.tb{
@@ -38,31 +39,24 @@
 		float: right;
 	}
 	
+	.textbox{
+		border: 1px solid #CCCCCC; border-radius: 4px; margin-top: 10px;
+		width: 65%;
+		height: 200px;
+	}
+	
 	input {
 		border: 1px solid #CCCCCC; border-radius: 4px; margin-top: 10px;
 		width: 60%;
 	}
 	
+	.buttonC {
+		display: inline-block;
+		float: right;
+		margin-right: 100px;
+	}
+	
 	.dn {
 		display: none;
-	}
-	
-	p {
-		line-height: 44px;
-		vertical-align: middle;
-	}
-	
-	#check {
-		display: inline-block;
-		float: none!important;
-		width:inherit;
-	}
-	
-	.id_error{
-		border-color: red;
-	}
-	
-	.id_success{
-		border-color: blue;
 	}
 </style>

@@ -10,7 +10,7 @@
 	$( document ).ready(function() {
 		var nickname = '<%=session.getAttribute("nick") %>';
 		var index = -1;
-		
+		var bIndex = -1;
 		if(location.search != ""){
 			index = location.search.replace("?", "").split("=")[1];
 			console.log(index);
@@ -26,6 +26,11 @@
 	    $("#list").on("click", function(){
 	    	console.log("list!!");
 	    	location.href="/home"
+	    })
+	    
+	    $(".buttonC button:button").on("click", function(){
+	    	bIndex = $(".buttonC button:button").index(this);
+	    	console.log(bIndex);
 	    })
 	    
 	    function select(){
@@ -55,17 +60,17 @@
 					var filename = (storage[index].fileName!=null)?storage[index].fileName:"업로드된 파일 없음";
 					$('#fList').val(filename);
 				}
-				
 			})
 		}
 	    
 	    $('#update').click(function(){
-	    	 $.ajax({
-	    		url: '/cud',
+	    	  $.ajax({
+	    		url: '/ud',
 	    		type: 'POST',
 	    		data: {
 	    			"txt" : $("input[name=txt]").val(),
-	    			"no" : 	storage[index].no
+	    			"no" : 	storage[index].no,
+	    			"type" : bIndex
 	    		}
 	    	}).done(function(data){
 	    		if(data.status == "1"){
@@ -79,10 +84,12 @@
 	    
 	    $("#delete").click(function(){
 	    	 $.ajax({
-		    		url: '/cud',
+		    		url: '/ud',
 		    		type: 'POST',
 		    		data: {
-		    			"no" : 	storage[index].no
+		    			"no" : 	storage[index].no,
+		    			"type" : bIndex,
+		    			"nickName" : nickname
 		    		}
 		    	}).done(function(data){
 		    		if(data.status == "1"){
@@ -93,13 +100,6 @@
 		    		}
 		    	})
 	    })
-	    
-	    $(".buttonC button:button").on("click", function(){
-	    	var bIndex = $(".buttonC button:button").index(this);
-	    	console.log(bIndex);
-	    })
-	    
-	    
 	    
 	    select();  
 	    

@@ -36,4 +36,12 @@ public class Dao {
 	public void insert(ListBean lBean) {
 		session.insert("sql.insert", lBean);
 	}
+	
+	public int update(ListBean lBean) {
+		return session.update("sql.update", lBean);
+	}
+	
+	public int delete(ListBean lBean) {
+		return session.update("sql.delete", lBean);
+	}
 }

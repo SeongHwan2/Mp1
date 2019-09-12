@@ -232,8 +232,24 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/ud")
-	public void cud(HttpServletRequest req, HttpServletResponse res) {
-		
+	public void cud(HttpServletRequest req, HttpServletResponse res, ListBean lBean) {
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		String type = req.getParameter("type");
+		System.out.println(type);
+		System.out.println(lBean.getNo());
+		params.put("lbean", lBean);
+		params.put("type", type);
+		int status = ls.ud(params);
+		JSONObject jobj = new JSONObject();
+		jobj.put("status", status);
+		try {
+			res.setCharacterEncoding("UTF-8");
+			res.setContentType("application/json; charset=UTF-8");
+			res.getWriter().write(jobj.toString());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@RequestMapping(value="/download", method=RequestMethod.POST)

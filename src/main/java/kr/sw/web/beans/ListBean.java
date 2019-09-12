@@ -6,12 +6,12 @@ public class ListBean {
 	private String fileName;
 	private String fileUrl;
 	private String nickName;
-	private int no;
+	private String no;
 	
-	public int getNo() {
+	public String getNo() {
 		return no;
 	}
-	public void setNo(int no) {
+	public void setNo(String no) {
 		this.no = no;
 	}
 	public String getTitle() {
@@ -47,8 +47,9 @@ public class ListBean {
 	@Override
 	public String toString() {
 		return "ListBean [title=" + title + ", txt=" + txt + ", fileName=" + fileName + ", fileUrl=" + fileUrl
-				+ ", nickName=" + nickName + "]";
+				+ ", nickName=" + nickName + ", no=" + no + "]";
 	}
+	
 	
 	
 }

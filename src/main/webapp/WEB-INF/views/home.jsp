@@ -7,7 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>게시판</title>
-<link rel="stylesheet" href="/resources/css/home2.css">
+<link rel="stylesheet" href="/resources/css/home.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -39,10 +39,15 @@ $(document).ready(function(){
 				location.href = "/create/?index=" + index;
 			});
  			
+ 			
+ 			
 		})
 	}
 	
-	
+	if("<%=session.getAttribute("nick")%>" == "null"){
+			$("#edit button:submit").addClass("dn");
+			$("#login").removeClass("dn");
+	}
 	
 	
 	select();
@@ -53,6 +58,7 @@ $(document).ready(function(){
 	<p id="info">사용자 : <%=session.getAttribute("nick") %>님</p>
 	<form action="/logout">
 		<button type="submit" id="logout">로그아웃</button>
+		<button type="button" class="dn" id="login">로그인</button>
 	</form>
 	
 	

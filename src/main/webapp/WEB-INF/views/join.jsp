@@ -14,7 +14,12 @@ $(document).ready(function(){
 		alert(msg);
 	}
 	
-	
+	$("form").submit(function(e) {
+		  if(!idCheck){
+			  e.preventDefault();
+			  alert("아이디 중복체크를 해주세요");
+		  }
+	});
 	
 	$("#check").on("click", function(){
 			if($("#idt").val() != ""){
@@ -32,26 +37,24 @@ $(document).ready(function(){
 							$("#idt").removeClass("id_success");
 						}
 						$("#idt").addClass("id_error");
-//						$("#idt").val("중복된 아이디 입니다.");
+						$("span").text("사용불가");
+						$("span").css('color', 'red');
 					}else {
 						if($("#idt").hasClass("id_error")){
 							$("#idt").removeClass("id_error");
 						}
 						$("#idt").addClass("id_success");
+						$("span").text("사용가능");
+						$("span").css('color', 'blue');
 					}
 				})
 				idCheck = true;
 			}else {
 				alert("값을 입력하세요");
 			}
-	
-			$("#fr").submit(function( event ) {
-				event.preventDefault();
-				if(idCheck != true) {
-					alert("아이디 중복여부를 확인하세요");
-				}
-			});
 	})
+	
+	
 })
 </script>
 </head>
@@ -65,7 +68,9 @@ $(document).ready(function(){
 			<label>userid</label>
 			<input type="text" id="idt" name="id" required="required" placeholder="아이디를 입력하세요" class="tb">
 			<button type="button" id="check">확인</button>
+			<span></span>
 			</p>
+			
 			<p>
 			<label>password</label>
 			<input name="password" class="tb" required="required" placeholder="비밀번호를 입력하세요">

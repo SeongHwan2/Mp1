@@ -271,7 +271,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/logout")
-	public void logout(HttpSession hs) {
+	public String logout(HttpSession hs) {
 		System.out.println(hs.getAttribute("nick"));
+		hs.invalidate();
+		return "redirect:/home";
 	}
 }

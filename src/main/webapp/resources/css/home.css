@@ -63,4 +63,8 @@
 		display: inline-block;
 		margin: 0;
 	}
+	
+	.dn {
+		display: none;
+	}
 </style>

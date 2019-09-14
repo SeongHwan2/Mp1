@@ -86,6 +86,8 @@ public class HomeController {
 				HttpSession hs = req.getSession();
 				hs.setAttribute("nick", nick);
 				return "redirect:/home";
+			}else {
+				req.setAttribute("msg", "로그인 실패");
 			}
 			return "login";
 		}

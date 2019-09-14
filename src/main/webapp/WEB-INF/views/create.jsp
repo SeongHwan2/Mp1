@@ -11,12 +11,21 @@
 		var nickname = '<%=session.getAttribute("nick") %>';
 		var index = -1;
 		var bIndex = -1;
+		
+		$('input[name=txt]').keydown(function() {
+			if (event.keyCode === 13) {
+			    event.preventDefault();
+			};
+		});
+			  
+		
 		if(location.search != ""){
 			index = location.search.replace("?", "").split("=")[1];
 			console.log(index);
 			$("#insert").addClass("dn");
 			$("#fList").removeClass("dn");
 			$("input[name=file]").addClass("dn");
+			$("input[name=txt]").addClass("di");
 			$(".di").attr("disabled", true);
 			$("h2").text("learnMore");
 		}
@@ -56,6 +65,7 @@
 					if (storage[index].nickName == nickname || nickname == "주인장" || nickname == "관리자"){
 						$("#update").removeClass("dn");
 						$("#delete").removeClass("dn");
+						$("input[name=txt]").attr("disabled", false);
 					}
 					var filename = (storage[index].fileName!=null)?storage[index].fileName:"업로드된 파일 없음";
 					$('#fList').val(filename);

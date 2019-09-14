@@ -44,11 +44,14 @@ $(document).ready(function(){
 		})
 	}
 	
-	if("<%=session.getAttribute("nick")%>" == "null"){
+	if('<%=session.getAttribute("nick")%>' == "null"){
 			$("#edit button:submit").addClass("dn");
 			$("#login").removeClass("dn");
 	}
 	
+	$("#login").on("click", function(){
+		location.href="/login";
+	})
 	
 	select();
 })

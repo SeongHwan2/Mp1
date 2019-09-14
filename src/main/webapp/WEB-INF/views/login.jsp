@@ -48,7 +48,7 @@
 			<input type="text" name="id"></p>
 			<p>
 			<label>password</label>
-			<input type="text" name="password">
+			<input type="password" name="password">
 			<button type="submit">로그인</button></p>
 			<button type="button" id="join">회원가입</button>
 		</form>

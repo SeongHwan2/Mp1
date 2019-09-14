@@ -44,13 +44,17 @@ $(document).ready(function(){
 	
 	
 	
+	
 	select();
 })
 </script>
 </head>
 <body>
 	<p id="info">사용자 : <%=session.getAttribute("nick") %>님</p>
-	<button id="logout">로그아웃</button>
+	<form action="/logout">
+		<button type="submit" id="logout">로그아웃</button>
+	</form>
+	
 	
 	<header>
 		<h1> 게시판 </h1>

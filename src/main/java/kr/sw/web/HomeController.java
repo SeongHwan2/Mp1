@@ -269,4 +269,9 @@ public class HomeController {
 		 }
 		 
 	}
+	
+	@RequestMapping("/logout")
+	public void logout(HttpSession hs) {
+		System.out.println(hs.getAttribute("nick"));
+	}
 }

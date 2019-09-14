@@ -117,7 +117,7 @@
 </script>
 </head>
 <body>
-<%=session.getAttribute("nick") %>
+<%-- <%=session.getAttribute("nick") %> --%>
 	<header>
 		<h2>Input & Output</h2>
 	</header>

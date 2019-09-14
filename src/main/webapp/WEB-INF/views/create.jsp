@@ -12,11 +12,11 @@
 		var index = -1;
 		var bIndex = -1;
 		
-		$('input[name=txt]').keydown(function() {
+		/* $('input[name=txt]').keydown(function() {
 			if (event.keyCode === 13) {
 			    event.preventDefault();
 			};
-		});
+		}); */
 			  
 		
 		if(location.search != ""){
@@ -25,7 +25,7 @@
 			$("#insert").addClass("dn");
 			$("#fList").removeClass("dn");
 			$("input[name=file]").addClass("dn");
-			$("input[name=txt]").addClass("di");
+			$("textarea[name=txt]").addClass("di");
 			$(".di").attr("disabled", true);
 			$("h2").text("learnMore");
 		}
@@ -56,7 +56,7 @@
 				if(index != -1){
 					console.log(index);
 					$('input[name=title]').val(storage[index].title);
-					$('input[name=txt]').val(storage[index].txt);
+					$('textarea[name=txt]').val(storage[index].txt);
 					if(storage[index].fileName != ""){
 						$("#download").removeClass("dn");
 						$("input[name=url]").val(storage[index].fileUrl);
@@ -65,7 +65,7 @@
 					if (storage[index].nickName == nickname || nickname == "주인장" || nickname == "관리자"){
 						$("#update").removeClass("dn");
 						$("#delete").removeClass("dn");
-						$("input[name=txt]").attr("disabled", false);
+						$("textarea[name=txt]").attr("disabled", false);
 					}
 					var filename = (storage[index].fileName!=null)?storage[index].fileName:"업로드된 파일 없음";
 					$('#fList').val(filename);
@@ -78,14 +78,14 @@
 	    		url: '/ud',
 	    		type: 'POST',
 	    		data: {
-	    			"txt" : $("input[name=txt]").val(),
+	    			"txt" : $("textarea[name=txt]").val(),
 	    			"no" : 	storage[index].no,
 	    			"type" : bIndex
 	    		}
 	    	}).done(function(data){
 	    		if(data.status == "1"){
 	    			alert("수정성공");
-	    			$("input[name=txt]").attr("disabled", true);
+	    			$("textarea[name=txt]").attr("disabled", true);
 	    		}else {
 	    			alert("수정실패 : 수정할 내용을 입력하세요!");
 	    		}
@@ -128,7 +128,7 @@
 			<input type="text" name="title" placeholder="제목을 입력하세요" class="tb di"></p>
 			<p>
 			<label>내용</label>
-			<input name="txt" class="textbox">
+			<textarea name="txt" class="textbox"></textarea>
 			</p>
 			<div>
 			<label>첨부파일</label>

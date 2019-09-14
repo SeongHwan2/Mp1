@@ -87,7 +87,7 @@ public class HomeController {
 				hs.setAttribute("nick", nick);
 				return "redirect:/home";
 			}else {
-				req.setAttribute("msg", "로그인 실패");
+				req.setAttribute("msg", "등록되지 않은 아이디 이거나, 아이디 또는 비밀번호를 잘못 입력 하셨습니다.");
 			}
 			return "login";
 		}

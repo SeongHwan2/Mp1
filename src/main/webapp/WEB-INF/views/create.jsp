@@ -125,10 +125,10 @@
 		<form id="" action="/insert" method="POST" enctype="multipart/form-data">
 			<p>
 			<label>제목</label>
-			<input type="text" name="title" placeholder="제목을 입력하세요" class="tb di"></p>
+			<input type="text" name="title" placeholder="제목을 입력하세요" class="tb di" required="required"></p>
 			<p>
 			<label>내용</label>
-			<textarea name="txt" class="textbox"></textarea>
+			<textarea name="txt" class="textbox" required="required"></textarea>
 			</p>
 			<div>
 			<label>첨부파일</label>

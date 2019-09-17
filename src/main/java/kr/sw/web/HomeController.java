@@ -275,4 +275,9 @@ public class HomeController {
 		hs.invalidate();
 		return "redirect:/home";
 	}
+	
+	@RequestMapping("/ck")
+	public String ck() {
+		return "write";
+	}
 }

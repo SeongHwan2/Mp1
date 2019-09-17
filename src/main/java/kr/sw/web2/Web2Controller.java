@@ -10,4 +10,9 @@ public class Web2Controller {
 	public String write() {
 		return "write";
 	}
+	
+	@RequestMapping("/home2")
+	public String web2home() {
+		return "web2Home";
+	}
 }

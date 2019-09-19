@@ -52,18 +52,18 @@ public class Web2Controller {
 		try {
 			// 토큰 요청
 			String url = "https://kauth.kakao.com/oauth/token";
-			url += "?client_id=bbb6688063a84bc1d3fc10809439563c&redirect_uri=";
+			url += "?client_id=15d3f05a889119af54eb25ef333399df&redirect_uri=";
 			url += URLEncoder.encode("http://gdj16.gudi.kr:20012/KakaoBack", "UTF-8");
 			url += "&code=" + req.getParameter("code");
 			url += "&grant_type=authorization_code";
 			resultMap = HttpUtil.getUrl(url);
 			System.out.println(resultMap);
 			
-//			String access_token = resultMap.get("access_token").toString(); // 사용자 정보 요청
-//			String userUrl = "https://kapi.kakao.com/v2/user/me"; 
-//			userUrl +="?access_token=" + access_token; 
-//			resultMap = HttpUtil.getUrl(userUrl);
-//			System.out.println(resultMap); 
+			String access_token = resultMap.get("access_token").toString(); // 사용자 정보 요청
+			String userUrl = "https://kapi.kakao.com/v2/user/me"; 
+			userUrl +="?access_token=" + access_token; 
+			resultMap = HttpUtil.getUrl(userUrl);
+			System.out.println(resultMap); 
 //			 model.addAttribute("access_token",access_token); 
 //			 model.addAttribute("user", resultMap);
 			 

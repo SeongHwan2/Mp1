@@ -25,6 +25,18 @@
 	h2 {
 	}
 	
+	nav {
+		widht: 100%;
+		height: 50px;
+		background-color: black;
+	}
+	
+	footer {
+		width: 100%;
+		height: 200px;
+		background-color: black;
+	}
+	
 	.Container {
 		width: 100%;
 		padding: 0;
@@ -52,7 +64,11 @@
 	<header>
 		<h1>게시판</h1>
 	</header>
-	<nav>네비</nav>
+	<nav>
+		<form action="/loin" method="get">
+			<button type="submit">로그인</button>
+		</form>
+	</nav>
 	<section>
 		<article class="Container">
 		  <h2>Who am I</h2>

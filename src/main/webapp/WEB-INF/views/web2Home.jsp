@@ -81,6 +81,7 @@ $(document).ready(function() {
 	var nick = "";
 	var token ="";
 	var loCheck = false;
+	var storage = [];
 	if(<%= request.getAttribute("pro") %> != null){
 		pro = <%= request.getAttribute("pro") %>;
 		imgUrl = pro.pro.profile_image;
@@ -98,6 +99,22 @@ $(document).ready(function() {
 	}else {
 		$("#loin").addClass("dn");
 	}
+	
+	function select() {
+		$.post("/select", function(data){
+			console.log(data);
+			storage = data.list;
+			console.log(storage);
+			$(".list").empty();
+			for(var i = 0; i < storage.length; i++) {
+				var tag = '<li class="list-group-item">' + storage[i].title + '</li>';
+				$(".list").append(tag);
+			}
+			
+		})
+	}
+	
+	select();
 	
 });
 </script>
@@ -123,7 +140,7 @@ $(document).ready(function() {
 		       <div class="w3-container">
 		       <p>nickName</p>
 		       </div>
-		     </div>
+		     </div> 
 		  <ul class="list">
 		    <li class="list-group-item">첫번째글</li>
 		    <li class="list-group-item">두번째글</li>

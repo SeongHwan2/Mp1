@@ -43,5 +43,37 @@ public class HttpUtil {
                e.printStackTrace();
         }
                return resultMap;
-        }                    
+        }
+	
+	public static HashMap<String, Object> getUrl2(String apiUrl, String token){
+		HashMap<String, Object> resultMap = new HashMap<String, Object>();
+		try {
+			URL url = new URL(apiUrl);
+			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+			conn.setRequestMethod("POST");
+			conn.setRequestProperty("Authorization", "Bearer " + token);
+			int resCode = conn.getResponseCode();
+			if(resCode == 200) {
+				InputStream input = conn.getInputStream();
+				InputStreamReader inputReader = new InputStreamReader(input, "utf-8");
+				BufferedReader br = new BufferedReader(inputReader);
+				String line = "";
+				String result = "";
+				while((line = br.readLine()) != null) {
+					result += line;
+				}
+				JSONObject jObject = JSONObject.fromObject(result);
+				Iterator<?> iterator = jObject.keys();
+				while(iterator.hasNext()) {
+					String key = iterator.next().toString();
+					String value = jObject.getString(key);
+					resultMap.put(key, value);
+				}				
+				input.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return resultMap;
+	}
 }

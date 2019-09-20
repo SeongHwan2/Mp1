@@ -59,19 +59,44 @@
 		border: 1px solid black;
 	}
 	
+	nav form {
+		display: inline-block;
+		height: 100%;
+	}
+	
+	nav form button {
+		height: 100%;
+		background-color: black;
+		color: white;
+	}
+	
+	.dn {
+		display: none;
+	}
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
 	var pro = {};
 	var imgUrl = "";
 	var nick = "";
+	var token ="";
+	var loCheck = false;
 	if(<%= request.getAttribute("pro") %> != null){
 		pro = <%= request.getAttribute("pro") %>;
 		imgUrl = pro.pro.profile_image;
 		nick = pro.pro.nickname;
-		console.log(pro.pro.nickname + " : " +  imgUrl);
+		token = '<%= request.getAttribute("access_token") %>';
+		console.log(pro.pro.nickname + " : " +  imgUrl + " token : " + token);
 		$(".profileC img").attr("src", imgUrl);
 		$(".profileC p").text(nick);
+		$("#lout input").val(token);
+		loCheck = true;
+	}
+	
+	if(!loCheck) {
+		$("#lout").addClass("dn");
+	}else {
+		$("#loin").addClass("dn");
 	}
 	
 });
@@ -82,8 +107,12 @@ $(document).ready(function() {
 		<h1>게시판</h1>
 	</header>
 	<nav>
-		<form action="/loin">
+		<form action="/loin" id="loin">
 			<button type="submit">로그인</button>
+		</form>
+		<form action="lout" id="lout">
+			<button type="submit">로그아웃</button>
+			<input type="text" name="key" class="dn">
 		</form>
 	</nav>
 	<section>

@@ -24,7 +24,7 @@ public class Web2Controller {
 	}
 
 	@RequestMapping("/home2")
-	public String web2home() {
+	public String web2home(Model model) {
 		return "web2Home";
 	}
 
@@ -71,11 +71,19 @@ public class Web2Controller {
 			System.out.println(jobj.get("pro"));
 			model.addAttribute("access_token",access_token); 
 			model.addAttribute("pro", jobj);
-			 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return "web2Home";
+	}
+	
+	@RequestMapping("/lout")
+	public String logout(HttpServletRequest req, HttpServletResponse res) throws IOException {
+		String key = req.getParameter("key");
+		String url = "https://kapi.kakao.com/v1/user/logout";
+		HashMap<String, Object> resultMap = HttpUtil.getUrl2(url, key);
+		System.out.println(resultMap);
+		return "redirect:/home2";
 	}
 
 }

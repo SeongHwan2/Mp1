@@ -13,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import kr.sw.web2.Util.HttpUtil;
+import net.sf.json.JSONObject;
 
 @Controller
 public class Web2Controller {
@@ -63,14 +64,18 @@ public class Web2Controller {
 			String userUrl = "https://kapi.kakao.com/v2/user/me"; 
 			userUrl +="?access_token=" + access_token; 
 			resultMap = HttpUtil.getUrl(userUrl);
-			System.out.println(resultMap); 
-//			 model.addAttribute("access_token",access_token); 
-//			 model.addAttribute("user", resultMap);
+			System.out.println(resultMap);
+//			System.out.println(resultMap.get("properties"));
+			JSONObject jobj = new JSONObject();
+			jobj.put("pro", resultMap.get("properties"));
+			System.out.println(jobj.get("pro"));
+			model.addAttribute("access_token",access_token); 
+			model.addAttribute("pro", jobj);
 			 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "ltest";
+		return "web2Home";
 	}
 
 }

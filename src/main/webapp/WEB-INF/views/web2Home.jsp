@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -59,13 +60,29 @@
 	}
 	
 </style>
+<script type="text/javascript">
+$(document).ready(function() {
+	var pro = {};
+	var imgUrl = "";
+	var nick = "";
+	if(<%= request.getAttribute("pro") %> != null){
+		pro = <%= request.getAttribute("pro") %>;
+		imgUrl = pro.pro.profile_image;
+		nick = pro.pro.nickname;
+		console.log(pro.pro.nickname + " : " +  imgUrl);
+		$(".profileC img").attr("src", imgUrl);
+		$(".profileC p").text(nick);
+	}
+	
+});
+</script>
 </head>
 <body>
 	<header>
 		<h1>게시판</h1>
 	</header>
 	<nav>
-		<form action="/loin" method="get">
+		<form action="/loin">
 			<button type="submit">로그인</button>
 		</form>
 	</nav>
@@ -73,7 +90,7 @@
 		<article class="Container">
 		  <h2>Who am I</h2>
 		     <div class="profileC">
-		       <img src="" style="width:100%" alt="profilePhoto">
+		       <img src="" width="75%" height="200px" alt="profilePhoto">
 		       <div class="w3-container">
 		       <p>nickName</p>
 		       </div>

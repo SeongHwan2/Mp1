@@ -4,7 +4,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>글쓰기</title>
-	<link rel="stylesheet" href="/resources/css/main.css">
+	<!--  <link rel="stylesheet" href="/resources/css/main.css"> -->
 	<script type="text/javascript" src="/resources/libs/ckeditor/ckeditor.js"></script>
 	<style>
 		body {margin: 45px 0 0 0;}
@@ -66,7 +66,7 @@
 		   	</p>
 		   <textarea id="editor" name="text"></textarea>
 		   <button type="submit" formaction="/write/insert">확인</button>
-		   <a href="/home"><button type="button">목록</button></a>   	
+		   <a href="/home2"><button type="button">목록</button></a>   	
 		</form>
 	</div>
 </body>

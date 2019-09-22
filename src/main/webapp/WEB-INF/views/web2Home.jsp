@@ -82,12 +82,11 @@ $(document).ready(function() {
 	var token ="";
 	var loCheck = false;
 	var storage = [];
-	if(<%= request.getAttribute("pro") %> != null){
-		pro = <%= request.getAttribute("pro") %>;
-		imgUrl = pro.pro.profile_image;
-		nick = pro.pro.nickname;
+	if('<%= session.getAttribute("nick") %>' != 'null'){
+		imgUrl ='<%= session.getAttribute("imgUrl") %>';
+		nick = '<%= session.getAttribute("nick") %>' ;
 		token = '<%= request.getAttribute("access_token") %>';
-		console.log(pro.pro.nickname + " : " +  imgUrl + " token : " + token);
+		console.log(nick + " : " +  imgUrl + " token : " + token);
 		$(".profileC img").attr("src", imgUrl);
 		$(".profileC p").text(nick);
 		$("#lout input").val(token);
@@ -111,8 +110,19 @@ $(document).ready(function() {
 				$(".list").append(tag);
 			}
 			
+			$(".list-group-item").on("click", function(){
+				var index = $(".list-group-item").index(this);
+				console.log(index);
+				console.log(storage[index]);
+				location.href = "/create2/?index=" + index;
+			})
+			
 		})
 	}
+	
+	$("#create2").on("click", function(){
+		location.href = "/create2";
+	})
 	
 	select();
 	
@@ -140,7 +150,8 @@ $(document).ready(function() {
 		       <div class="w3-container">
 		       <p>nickName</p>
 		       </div>
-		     </div> 
+		     </div>
+		  <button type="button" id ="create2">글작성</button>    
 		  <ul class="list">
 		    <li class="list-group-item">첫번째글</li>
 		    <li class="list-group-item">두번째글</li>

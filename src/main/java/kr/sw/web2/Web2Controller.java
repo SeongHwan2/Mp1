@@ -1,8 +1,11 @@
 package kr.sw.web2;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -138,7 +141,11 @@ public class Web2Controller {
 	//				System.out.println(req.getSession().getServletContext().getRealPath("/")); //file처리시 유용
 					
 					//데이터 가져오기
-					byte data1[] =  file.getBytes(); // getByte로 파일 내용 받기 >> byte로 넘어오기 때문에 byte패열에 저장
+					byte data1[] =  file.getBytes();// getByte로 파일 내용 받기 >> byte로 넘어오기 때문에 byte패열에 저장
+					InputStream data2 = file.getInputStream();
+					BufferedReader br = new BufferedReader(new InputStreamReader(data2));
+					StringBuffer sb = new StringBuffer();
+					
 					//저장경로 + 파일명 정의
 	//				String realPath = req.getSession().getServletContext().getRealPath("/"); // 프로젝트까지 위치
 					String Path = "D:\\IDE\\workspace\\upload\\"; // 작성자 / 메뉴 / 날짜 / 시간 / 파일명 등으로 관리할수있다 >> 디렉토리 관리

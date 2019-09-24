@@ -48,7 +48,7 @@ public class Web2Controller {
 			String url = "https://accounts.kakao.com/login?continue=";
 			String url2 = "https://kauth.kakao.com/oauth/authorize";
 			url2 += "?client_id=15d3f05a889119af54eb25ef333399df";
-			url2 += "&redirect_uri=http://192.168.35.186:8080/KakaoBack";
+			url2 += "&redirect_uri=http://gdj16.gudi.kr:20012/KakaoBack";
 			url2 += "&response_type=code";
 			url += URLEncoder.encode(url2, "UTF-8");
 			System.out.println(url);
@@ -68,7 +68,7 @@ public class Web2Controller {
 			// 토큰 요청
 			String url = "https://kauth.kakao.com/oauth/token";
 			url += "?client_id=15d3f05a889119af54eb25ef333399df&redirect_uri=";
-			url += URLEncoder.encode("http://192.168.35.186:8080/KakaoBack", "UTF-8");
+			url += URLEncoder.encode("http://gdj16.gudi.kr:20012/KakaoBack", "UTF-8");
 			url += "&code=" + req.getParameter("code");
 			url += "&grant_type=authorization_code";
 			resultMap = HttpUtil.getUrl(url);
@@ -175,6 +175,11 @@ public class Web2Controller {
 //		System.out.println(params.toString());
 		d.insert(lBean);
 		return "redirect:/home2";
+	}
+	
+	@RequestMapping("/chart")
+	public String chart() {
+		return "chart";
 	}
 
 }
